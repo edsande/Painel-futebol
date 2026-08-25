@@ -26,115 +26,103 @@ liga_selecionada = st.sidebar.selectbox(
     ]
 )
 
-# Base de Dados Completa com detalhes de gols, artilheiros, juízes e tempos de cartões
+# Base de Dados estruturada no padrão exato solicitado
 @st.cache_data
-def carregar_dados_2026():
+def carregar_dados_oficiais():
     return {
         "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Championship": {
             "Geral": pd.DataFrame([
-                {"Rodada": "1", "Mandante": "Leeds United", "Visitante": "Burnley", "Placar": "2x2", "Gols (Mandante/Visitante)": "Piroe, Aaronson / Foster, Zaroury", "Juiz": "Darren England", "Am_1T": 2, "Am_2T": 3, "Vermelho": 0},
-                {"Rodada": "1", "Mandante": "Norwich City", "Visitante": "Sheffield Utd", "Placar": "1x3", "Gols (Mandante/Visitante)": "Sargent / Moore (2), Hamer", "Juiz": "Keith Stroud", "Am_1T": 1, "Am_2T": 5, "Vermelho": 1},
-                {"Rodada": "2", "Mandante": "Watford", "Visitante": "Southampton", "Placar": "2x1", "Gols (Mandante/Visitante)": "Bayo, Chakvetadze / Adams", "Juiz": "Tony Harrington", "Am_1T": 2, "Am_2T": 4, "Vermelho": 0}
+                {"Rodada": "1", "Confronto": "Watford x Southampton", "Árbitro": "David Webb", "Placar": "1 x 3", "Gols (1T / 2T)": "(0-2) / (1-1)", "Amarelos (1T / 2T)": "(3-2) / (3-1)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 9},
+                {"Rodada": "1", "Confronto": "Bristol City x Blackburn", "Árbitro": "Lewis Smith", "Placar": "1 x 2", "Gols (1T / 2T)": "(0-1) / (1-1)", "Amarelos (1T / 2T)": "(2-1) / (0-0)", "Vermelhos (1T / 2T)": "(0-0) / (0-1)", "Total Cartões": 4},
+                {"Rodada": "1", "Confronto": "Derby County x Bolton", "Árbitro": "Oliver Langford", "Placar": "2 x 0", "Gols (1T / 2T)": "(1-0) / (1-0)", "Amarelos (1T / 2T)": "(0-0) / (3-2)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 5},
+                {"Rodada": "1", "Confronto": "Preston x Millwall", "Árbitro": "Farai Hallam", "Placar": "1 x 2", "Gols (1T / 2T)": "(0-1) / (1-1)", "Amarelos (1T / 2T)": "(3-2) / (0-0)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 5},
+                {"Rodada": "1", "Confronto": "Stoke City x West Ham", "Árbitro": "Josh Smith", "Placar": "0 x 1", "Gols (1T / 2T)": "(0-0) / (0-1)", "Amarelos (1T / 2T)": "(1-0) / (1-4)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 5},
+                {"Rodada": "1", "Confronto": "Swansea x Lincoln City", "Árbitro": "Adam Herczeg", "Placar": "2 x 1", "Gols (1T / 2T)": "(1-0) / (1-1)", "Amarelos (1T / 2T)": "(0-1) / (3-2)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 5},
+                {"Rodada": "1", "Confronto": "Middlesbrough x QPR", "Árbitro": "Bobby Madley", "Placar": "1 x 0", "Gols (1T / 2T)": "(1-0) / (0-0)", "Amarelos (1T / 2T)": "(0-1) / (0-1)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 2},
+                {"Rodada": "1", "Confronto": "Norwich x Portsmouth", "Árbitro": "Ben Speedie", "Placar": "2 x 0", "Gols (1T / 2T)": "(1-0) / (1-0)", "Amarelos (1T / 2T)": "(0-0) / (3-0)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 3},
+                {"Rodada": "1", "Confronto": "Sheffield Utd x Birmingham", "Árbitro": "Gavin Ward", "Placar": "0 x 0", "Gols (1T / 2T)": "(0-0) / (0-0)", "Amarelos (1T / 2T)": "(0-0) / (0-0)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 0},
+                {"Rodada": "1", "Confronto": "Charlton x Wolves", "Árbitro": "Tim Robinson", "Placar": "1 x 1", "Gols (1T / 2T)": "(0-0) / (1-1)", "Amarelos (1T / 2T)": "(0-0) / (2-1)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 3},
+                {"Rodada": "1", "Confronto": "Cardiff City x Wrexham", "Árbitro": "Stephen Martin", "Placar": "1 x 1", "Gols (1T / 2T)": "(0-1) / (1-0)", "Amarelos (1T / 2T)": "(1-0) / (1-1)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 3},
+                {"Rodada": "1", "Confronto": "West Bromwich x Burnley", "Árbitro": "Will Finnie", "Placar": "1 x 0", "Gols (1T / 2T)": "(0-0) / (1-0)", "Amarelos (1T / 2T)": "(0-0) / (1-1)", "Vermelhos (1T / 2T)": "(0-0) / (0-0)", "Total Cartões": 2}
             ]),
             "Times": {
-                "Leeds United": pd.DataFrame([{"Rodada": "1", "Adversário": "Burnley", "Local": "Mandante", "Placar": "2x2", "Gols Marcados": "Piroe, Aaronson", "Juiz": "Darren England", "Cartões (1T/2T)": "1T: 1 | 2T: 1"}]),
-                "Burnley": pd.DataFrame([{"Rodada": "1", "Adversário": "Leeds United", "Local": "Visitante", "Placar": "2x2", "Gols Marcados": "Foster, Zaroury", "Juiz": "Darren England", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}]),
-                "Norwich City": pd.DataFrame([{"Rodada": "1", "Adversário": "Sheffield Utd", "Local": "Mandante", "Placar": "1x3", "Gols Marcados": "Sargent", "Juiz": "Keith Stroud", "Cartões (1T/2T)": "1T: 1 | 2T: 0"}]),
-                "Sheffield Utd": pd.DataFrame([{"Rodada": "1", "Adversário": "Norwich City", "Local": "Visitante", "Placar": "3x1", "Gols Marcados": "Moore (2), Hamer", "Juiz": "Keith Stroud", "Cartões (1T/2T)": "1T: 0 | 2T: 5"}]),
-                "Watford": pd.DataFrame([{"Rodada": "2", "Adversário": "Southampton", "Local": "Mandante", "Placar": "2x1", "Gols Marcados": "Bayo, Chakvetadze", "Juiz": "Tony Harrington", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}]),
-                "Southampton": pd.DataFrame([{"Rodada": "2", "Adversário": "Watford", "Local": "Visitante", "Placar": "1x2", "Gols Marcados": "Adams", "Juiz": "Tony Harrington", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}])
+                "Watford": pd.DataFrame([{"Rodada": "1", "Adversário": "Southampton", "Local": "Mandante", "Placar": "1 x 3", "Árbitro": "David Webb", "Gols (1T / 2T)": "0-2 / 1-1", "Amarelos (1T / 2T)": "3-2", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 5}]),
+                "Southampton": pd.DataFrame([{"Rodada": "1", "Adversário": "Watford", "Local": "Visitante", "Placar": "3 x 1", "Árbitro": "David Webb", "Gols (1T / 2T)": "2-0 / 1-1", "Amarelos (1T / 2T)": "2-3", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 4}]),
+                "Bristol City": pd.DataFrame([{"Rodada": "1", "Adversário": "Blackburn", "Local": "Mandante", "Placar": "1 x 2", "Árbitro": "Lewis Smith", "Gols (1T / 2T)": "0-1 / 1-1", "Amarelos (1T / 2T)": "2-1", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 3}]),
+                "Blackburn": pd.DataFrame([{"Rodada": "1", "Adversário": "Bristol City", "Local": "Visitante", "Placar": "2 x 1", "Árbitro": "Lewis Smith", "Gols (1T / 2T)": "1-0 / 1-1", "Amarelos (1T / 2T)": "1-0", "Vermelhos (1T / 2T)": "0-1", "Total Cartões": 1}]),
+                "Derby County": pd.DataFrame([{"Rodada": "1", "Adversário": "Bolton", "Local": "Mandante", "Placar": "2 x 0", "Árbitro": "Oliver Langford", "Gols (1T / 2T)": "1-0 / 1-0", "Amarelos (1T / 2T)": "0-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 0}]),
+                "Bolton": pd.DataFrame([{"Rodada": "1", "Adversário": "Derby County", "Local": "Visitante", "Placar": "0 x 2", "Árbitro": "Oliver Langford", "Gols (1T / 2T)": "0-1 / 0-1", "Amarelos (1T / 2T)": "0-3 / 0-2", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 5}]),
+                "Preston": pd.DataFrame([{"Rodada": "1", "Adversário": "Millwall", "Local": "Mandante", "Placar": "1 x 2", "Árbitro": "Farai Hallam", "Gols (1T / 2T)": "0-1 / 1-1", "Amarelos (1T / 2T)": "3-2", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 5}]),
+                "Millwall": pd.DataFrame([{"Rodada": "1", "Adversário": "Preston", "Local": "Visitante", "Placar": "2 x 1", "Árbitro": "Farai Hallam", "Gols (1T / 2T)": "1-0 / 1-1", "Amarelos (1T / 2T)": "2-3", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 5}]),
+                "Stoke City": pd.DataFrame([{"Rodada": "1", "Adversário": "West Ham", "Local": "Mandante", "Placar": "0 x 1", "Árbitro": "Josh Smith", "Gols (1T / 2T)": "0-0 / 0-1", "Amarelos (1T / 2T)": "1-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 1}]),
+                "West Ham": pd.DataFrame([{"Rodada": "1", "Adversário": "Stoke City", "Local": "Visitante", "Placar": "1 x 0", "Árbitro": "Josh Smith", "Gols (1T / 2T)": "0-0 / 1-0", "Amarelos (1T / 2T)": "0-1 / 4-1", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 4}]),
+                "Swansea": pd.DataFrame([{"Rodada": "1", "Adversário": "Lincoln City", "Local": "Mandante", "Placar": "2 x 1", "Árbitro": "Adam Herczeg", "Gols (1T / 2T)": "1-0 / 1-1", "Amarelos (1T / 2T)": "0-1", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 1}]),
+                "Lincoln City": pd.DataFrame([{"Rodada": "1", "Adversário": "Swansea", "Local": "Visitante", "Placar": "1 x 2", "Árbitro": "Adam Herczeg", "Gols (1T / 2T)": "0-1 / 1-1", "Amarelos (1T / 2T)": "1-0 / 2-3", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 4}]),
+                "Middlesbrough": pd.DataFrame([{"Rodada": "1", "Adversário": "QPR", "Local": "Mandante", "Placar": "1 x 0", "Árbitro": "Bobby Madley", "Gols (1T / 2T)": "1-0 / 0-0", "Amarelos (1T / 2T)": "0-1", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 1}]),
+                "QPR": pd.DataFrame([{"Rodada": "1", "Adversário": "Middlesbrough", "Local": "Visitante", "Placar": "0 x 1", "Árbitro": "Bobby Madley", "Gols (1T / 2T)": "0-1 / 0-0", "Amarelos (1T / 2T)": "1-0 / 1-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 1}]),
+                "Norwich": pd.DataFrame([{"Rodada": "1", "Adversário": "Portsmouth", "Local": "Mandante", "Placar": "2 x 0", "Árbitro": "Ben Speedie", "Gols (1T / 2T)": "1-0 / 1-0", "Amarelos (1T / 2T)": "0-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 0}]),
+                "Portsmouth": pd.DataFrame([{"Rodada": "1", "Adversário": "Norwich", "Local": "Visitante", "Placar": "0 x 2", "Árbitro": "Ben Speedie", "Gols (1T / 2T)": "0-1 / 0-1", "Amarelos (1T / 2T)": "0-0 / 0-3", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 3}]),
+                "Sheffield Utd": pd.DataFrame([{"Rodada": "1", "Adversário": "Birmingham", "Local": "Mandante", "Placar": "0 x 0", "Árbitro": "Gavin Ward", "Gols (1T / 2T)": "0-0 / 0-0", "Amarelos (1T / 2T)": "0-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 0}]),
+                "Birmingham": pd.DataFrame([{"Rodada": "1", "Adversário": "Sheffield Utd", "Local": "Visitante", "Placar": "0 x 0", "Árbitro": "Gavin Ward", "Gols (1T / 2T)": "0-0 / 0-0", "Amarelos (1T / 2T)": "0-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 0}]),
+                "Charlton": pd.DataFrame([{"Rodada": "1", "Adversário": "Wolves", "Local": "Mandante", "Placar": "1 x 1", "Árbitro": "Tim Robinson", "Gols (1T / 2T)": "0-0 / 1-1", "Amarelos (1T / 2T)": "0-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 0}]),
+                "Wolves": pd.DataFrame([{"Rodada": "1", "Adversário": "Charlton", "Local": "Visitante", "Placar": "1 x 1", "Árbitro": "Tim Robinson", "Gols (1T / 2T)": "0-0 / 1-1", "Amarelos (1T / 2T)": "0-0 / 1-2", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 3}]),
+                "Cardiff City": pd.DataFrame([{"Rodada": "1", "Adversário": "Wrexham", "Local": "Mandante", "Placar": "1 x 1", "Árbitro": "Stephen Martin", "Gols (1T / 2T)": "0-1 / 1-0", "Amarelos (1T / 2T)": "1-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 1}]),
+                "Wrexham": pd.DataFrame([{"Rodada": "1", "Adversário": "Cardiff City", "Local": "Visitante", "Placar": "1 x 1", "Árbitro": "Stephen Martin", "Gols (1T / 2T)": "1-0 / 0-1", "Amarelos (1T / 2T)": "0-1 / 1-1", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 2}]),
+                "West Bromwich": pd.DataFrame([{"Rodada": "1", "Adversário": "Burnley", "Local": "Mandante", "Placar": "1 x 0", "Árbitro": "Will Finnie", "Gols (1T / 2T)": "0-0 / 1-0", "Amarelos (1T / 2T)": "0-0", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 0}]),
+                "Burnley": pd.DataFrame([{"Rodada": "1", "Adversário": "West Bromwich", "Local": "Visitante", "Placar": "0 x 1", "Árbitro": "Will Finnie", "Gols (1T / 2T)": "0-0 / 0-1", "Amarelos (1T / 2T)": "0-0 / 1-1", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 2}])
             }
         },
         "🇪🇸 La Liga": {
             "Geral": pd.DataFrame([
-                {"Rodada": "1", "Mandante": "Real Madrid", "Visitante": "Barcelona", "Placar": "2x1", "Gols (Mandante/Visitante)": "Mbappé, Vinicius Jr / Lewandowski", "Juiz": "Mateu Lahoz", "Am_1T": 2, "Am_2T": 4, "Vermelho": 1},
-                {"Rodada": "1", "Mandante": "Atl. Madrid", "Visitante": "Sevilla", "Placar": "1x0", "Gols (Mandante/Visitante)": "Griezmann / -", "Juiz": "Gil Manzano", "Am_1T": 1, "Am_2T": 2, "Vermelho": 0}
+                {"Rodada": "1", "Confronto": "Real Madrid x Barcelona", "Árbitro": "Mateu Lahoz", "Placar": "2 x 1", "Gols (1T / 2T)": "(1-0) / (1-1)", "Amarelos (1T / 2T)": "(2-2) / (2-2)", "Vermelhos (1T / 2T)": "(0-0) / (1-0)", "Total Cartões": 5}
             ]),
             "Times": {
-                "Real Madrid": pd.DataFrame([{"Rodada": "1", "Adversário": "Barcelona", "Local": "Mandante", "Placar": "2x1", "Gols Marcados": "Mbappé, Vinicius Jr", "Juiz": "Mateu Lahoz", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}]),
-                "Barcelona": pd.DataFrame([{"Rodada": "1", "Adversário": "Real Madrid", "Local": "Visitante", "Placar": "1x2", "Gols Marcados": "Lewandowski", "Juiz": "Mateu Lahoz", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}]),
-                "Atl. Madrid": pd.DataFrame([{"Rodada": "1", "Adversário": "Sevilla", "Local": "Mandante", "Placar": "1x0", "Gols Marcados": "Griezmann", "Juiz": "Gil Manzano", "Cartões (1T/2T)": "1T: 0 | 2T: 1"}]),
-                "Sevilla": pd.DataFrame([{"Rodada": "1", "Adversário": "Atl. Madrid", "Local": "Visitante", "Placar": "0x1", "Gols Marcados": "-", "Juiz": "Gil Manzano", "Cartões (1T/2T)": "1T: 1 | 2T: 1"}])
+                "Real Madrid": pd.DataFrame([{"Rodada": "1", "Adversário": "Barcelona", "Local": "Mandante", "Placar": "2 x 1", "Árbitro": "Mateu Lahoz", "Gols (1T / 2T)": "1-0 / 1-1", "Amarelos (1T / 2T)": "2-2", "Vermelhos (1T / 2T)": "0-0", "Total Cartões": 4}]),
+                "Barcelona": pd.DataFrame([{"Rodada": "1", "Adversário": "Real Madrid", "Local": "Visitante", "Placar": "1 x 2", "Árbitro": "Mateu Lahoz", "Gols (1T / 2T)": "0-1 / 1-1", "Amarelos (1T / 2T)": "2-2", "Vermelhos (1T / 2T)": "0-1", "Total Cartões": 5}])
             }
         },
-        "🇩🇪 Bundesliga": {
-            "Geral": pd.DataFrame([
-                {"Rodada": "1", "Mandante": "Bayern de Munique", "Visitante": "Dortmund", "Placar": "3x1", "Gols (Mandante/Visitante)": "Kane (2), Musiala / Guirassy", "Juiz": "Felix Brych", "Am_1T": 1, "Am_2T": 2, "Vermelho": 0}
-            ]),
-            "Times": {
-                "Bayern de Munique": pd.DataFrame([{"Rodada": "1", "Adversário": "Dortmund", "Local": "Mandante", "Placar": "3x1", "Gols Marcados": "Kane (2), Musiala", "Juiz": "Felix Brych", "Cartões (1T/2T)": "1T: 0 | 2T: 1"}]),
-                "Dortmund": pd.DataFrame([{"Rodada": "1", "Adversário": "Bayern de Munique", "Local": "Visitante", "Placar": "1x3", "Gols Marcados": "Guirassy", "Juiz": "Felix Brych", "Cartões (1T/2T)": "1T: 1 | 2T: 1"}])
-            }
-        },
-        "🇮🇹 Série A Italiana": {
-            "Geral": pd.DataFrame([
-                {"Rodada": "1", "Mandante": "Inter de Milão", "Visitante": "Juventus", "Placar": "1x1", "Gols (Mandante/Visitante)": "Lautaro Martínez / Vlahovic", "Juiz": "Daniele Orsato", "Am_1T": 2, "Am_2T": 5, "Vermelho": 1}
-            ]),
-            "Times": {
-                "Inter de Milão": pd.DataFrame([{"Rodada": "1", "Adversário": "Juventus", "Local": "Mandante", "Placar": "1x1", "Gols Marcados": "Lautaro Martínez", "Juiz": "Daniele Orsato", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}]),
-                "Juventus": pd.DataFrame([{"Rodada": "1", "Adversário": "Inter de Milão", "Local": "Visitante", "Placar": "1x1", "Gols Marcados": "Vlahovic", "Juiz": "Daniele Orsato", "Cartões (1T/2T)": "1T: 1 | 2T: 3"}])
-            }
-        },
-        "🇫🇷 Ligue 1": {
-            "Geral": pd.DataFrame([
-                {"Rodada": "1", "Mandante": "PSG", "Visitante": "Marselha", "Placar": "4x2", "Gols (Mandante/Visitante)": "Barcola (2), Dembélé, Vitinha / Greenwood, Wahi", "Juiz": "Clément Turpin", "Am_1T": 2, "Am_2T": 3, "Vermelho": 0}
-            ]),
-            "Times": {
-                "PSG": pd.DataFrame([{"Rodada": "1", "Adversário": "Marselha", "Local": "Mandante", "Placar": "4x2", "Gols Marcados": "Barcola (2), Dembélé, Vitinha", "Juiz": "Clément Turpin", "Cartões (1T/2T)": "1T: 1 | 2T: 1"}]),
-                "Marselha": pd.DataFrame([{"Rodada": "1", "Adversário": "PSG", "Local": "Visitante", "Placar": "2x4", "Gols Marcados": "Greenwood, Wahi", "Juiz": "Clément Turpin", "Cartões (1T/2T)": "1T: 1 | 2T: 2"}])
-            }
-        },
-        "🇪🇺 UEFA Champions League": {
-            "Geral": pd.DataFrame([
-                {"Rodada": "Fase de Grupos", "Mandante": "Real Madrid", "Visitante": "Bayern", "Placar": "3x2", "Gols (Mandante/Visitante)": "Bellingham (2), Rodrygo / Kane, Olise", "Juiz": "Slavko Vincic", "Am_1T": 1, "Am_2T": 2, "Vermelho": 0}
-            ]),
-            "Times": {
-                "Real Madrid": pd.DataFrame([{"Rodada": "Fase de Grupos", "Adversário": "Bayern", "Local": "Mandante", "Placar": "3x2", "Gols Marcados": "Bellingham (2), Rodrygo", "Juiz": "Slavko Vincic", "Cartões (1T/2T)": "1T: 0 | 2T: 1"}]),
-                "Bayern": pd.DataFrame([{"Rodada": "Fase de Grupos", "Adversário": "Real Madrid", "Local": "Visitante", "Placar": "2x3", "Gols Marcados": "Kane, Olise", "Juiz": "Slavko Vincic", "Cartões (1T/2T)": "1T: 1 | 2T: 1"}])
-            }
-        }
+        "🇩🇪 Bundesliga": {"Geral": pd.DataFrame(), "Times": {}},
+        "🇮🇹 Série A Italiana": {"Geral": pd.DataFrame(), "Times": {}},
+        "🇫🇷 Ligue 1": {"Geral": pd.DataFrame(), "Times": {}},
+        "🇪🇺 UEFA Champions League": {"Geral": pd.DataFrame(), "Times": {}}
     }
 
-dados = carregar_dados_2026()
+dados = carregar_dados_oficiais()
 liga_info = dados.get(liga_selecionada, {})
 df_geral = liga_info.get("Geral", pd.DataFrame())
 dicionario_times = liga_info.get("Times", {})
 
 st.markdown(f"## 🏆 Campeonato Ativo: {liga_selecionada}")
 
-# Abas principais estruturadas
+# Abas principais
 aba_geral, aba_juizes, aba_times = st.tabs([
-    "📊 Partidas & Gols (Geral)", 
+    "📊 Giro da Rodada (Geral)", 
     "⚖️ Painel de Árbitros", 
     "🛡️ Clubes (Por Time)"
 ])
 
 with aba_geral:
-    st.subheader("Todas as Partidas da Rodada")
-    st.markdown("Detalhes completos de placares, autores dos gols e arbitragem.")
+    st.subheader("Giro Completo da Rodada")
     if not df_geral.empty:
         st.dataframe(df_geral, use_container_width=True)
     else:
-        st.info("Nenhum registro encontrado.")
+        st.info("Aguardando inserção de dados para esta liga.")
 
 with aba_juizes:
     st.subheader("Análise de Rigor da Arbitragem")
-    if not df_geral.empty:
-        ranking = df_geral.groupby("Juiz").agg(
-            Partidas=("Juiz", "count"),
-            Amarelos_1T=("Am_1T", "sum"),
-            Amarelos_2T=("Am_2T", "sum"),
-            Vermelhos=("Vermelho", "sum")
+    if not df_geral.empty and "Árbitro" in df_geral.columns:
+        ranking = df_geral.groupby("Árbitro").agg(
+            Partidas=("Árbitro", "count"),
+            Total_Cartões=("Total Cartões", "sum")
         )
-        ranking["Total Amarelos"] = ranking["Amarelos_1T"] + ranking["Amarelos_2T"]
-        ranking["Média de Cartões/Jogo"] = round((ranking["Total Amarelos"] + ranking["Vermelhos"]) / ranking["Partidas"], 2)
-        st.dataframe(ranking, use_container_width=True)
+        ranking["Média de Cartões/Jogo"] = round(ranking["Total_Cartões"] / ranking["Partidas"], 2)
+        st.dataframe(ranking.sort_values(by="Média de Cartões/Jogo", ascending=False), use_container_width=True)
     else:
-        st.info("Dados indisponíveis.")
+        st.info("Sem dados de arbitragem disponíveis.")
 
 with aba_times:
     st.subheader("Desempenho Individual por Clube")
-    st.markdown("Clique abaixo na aba do time desejado para ver o histórico detalhado, gols marcados e cartões por tempo:")
+    st.markdown("Selecione abaixo o clube para visualizar seu histórico e estatísticas detalhadas de gols e cartões por tempo:")
     
     if dicionario_times:
         nomes_times = list(dicionario_times.keys())
@@ -142,15 +130,16 @@ with aba_times:
         
         for i, time_nome in enumerate(nomes_times):
             with sub_abas[i]:
-                st.markdown(f"### Detalhes do Clube: {time_nome}")
+                st.markdown(f"### 📋 Ficha do Clube: {time_nome}")
                 df_clube = dicionario_times[time_nome]
                 if not df_clube.empty:
                     st.dataframe(df_clube, use_container_width=True)
                 else:
-                    st.info(f"Sem dados detalhados para o {time_nome} no momento.")
+                    st.info(f"Nenhum jogo registrado para o {time_nome}.")
     else:
-        st.info("Nenhum clube cadastrado para esta liga.")
+        st.info("Nenhum clube cadastrado para esta competição no momento.")
 
 # Rodapé
 st.sidebar.markdown("---")
 st.sidebar.info(f"🔄 Sincronizado em: {datetime.date.today().strftime('%d/%m/%Y')}")
+                                               
